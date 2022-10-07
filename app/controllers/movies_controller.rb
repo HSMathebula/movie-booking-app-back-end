@@ -25,6 +25,12 @@ class MoviesController < ApplicationController
       render json: {message: "Movie deleted successfully!"}, status: 200
     else
       render json: {error: "Error deleting a movie"}
+    end
+  end
+
+  def latest_movie
+    movies = Movie.joins(:user, :genre, :category).select("movies.*, user, genres as genre").order('movies.created_at desc').limit(3)
+    render json: movies.to_json
   end
 
   def movie_params
