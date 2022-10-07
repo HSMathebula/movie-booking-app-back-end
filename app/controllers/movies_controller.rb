@@ -1,12 +1,13 @@
 class MoviesController < ApplicationController
   def index
-    movies = Movie.joins(:user, :genre, :category).select("movies.*, user, genres as genre")
+    movies = Movie.joins(:user, :genre, :category).select('movies.*, user, genres as genre')
     render json: movies.to_json
   end
 
   def show
-    movie = Movie.joins(:user, :genre, :category).select("movies.*, user, genres as genre").where(movies: {id: params[:id]})
-    render json: movie.to_json 
+    movie = Movie.joins(:user, :genre,
+                        :category).select('movies.*, user, genres as genre').where(movies: { id: params[:id] })
+    render json: movie.to_json
   end
 
   def create
@@ -15,21 +16,22 @@ class MoviesController < ApplicationController
     if movie.save
       render json: movie, status: 200
     else
-      render json: {error: "Error creating a movie"}
+      render json: { error: 'Error creating a movie' }
     end
   end
 
   def destroy
     movie = Movie.find(params[:id])
     if movie.destroy
-      render json: {message: "Movie deleted successfully!"}, status: 200
+      render json: { message: 'Movie deleted successfully!' }, status: 200
     else
-      render json: {error: "Error deleting a movie"}
+      render json: { error: 'Error deleting a movie' }
     end
   end
 
   def latest_movie
-    movies = Movie.joins(:user, :genre, :category).select("movies.*, user, genres as genre").order('movies.created_at desc').limit(3)
+    movies = Movie.joins(:user, :genre,
+                         :category).select('movies.*, user, genres as genre').order('movies.created_at desc').limit(3)
     render json: movies.to_json
   end
 
