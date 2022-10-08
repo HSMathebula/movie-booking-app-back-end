@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   # root "articles#index"
   resource :users, only: [:create]
   resources :movies
+  post "/login", to:"users#login"
   get '/latest_movies', to: 'movies#latest_movie', as: 'latest_movie'
 end
