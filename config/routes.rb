@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  resource :users, only: [:create]
   resources :movies
   get '/latest_movies', to: 'movies#latest_movie', as: 'latest_movie'
 end
