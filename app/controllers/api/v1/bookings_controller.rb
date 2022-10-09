@@ -1,4 +1,4 @@
-class Api::V1::BookingsController < ApplicationController   
+class Api::V1::BookingsController < ApplicationController
   before_action :set_booking_params, only: %i[show update destroy]
 
   def index
@@ -48,7 +48,6 @@ class Api::V1::BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booki).permit(:city, :date, :movie_id, :user_id)
+    params.require(:booking).permit(:city, :date, :movie_id, :user_id)
   end
 end
-ng
