@@ -20,4 +20,11 @@ class Api::V1::BookingsController < ApplicationController
       render json: { errors: @created_booking.errors.full_messages }, status: :unprocessible_entity
     end
   end
+
+  private
+
+  def booking_params
+    params.require(:booki).permit(:city, :date, :movie_id, :user_id)
+  end
 end
+ng
