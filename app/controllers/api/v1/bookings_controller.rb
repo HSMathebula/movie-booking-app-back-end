@@ -21,6 +21,22 @@ class Api::V1::BookingsController < ApplicationController
     end
   end
 
+  def update
+    if @booking.update(booking_params)
+      render json: @booking, status: :ok
+    else
+      render json: { errors: @booking.errors.full_messages }, status: :unprocessible_entity
+    end
+  end
+
+  def destroy
+    if @booking.destroy
+      render json: { message: 'booking deleted succesfully.' }
+    else
+      render json: { message: 'Unsuccessful' }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def booking_params
