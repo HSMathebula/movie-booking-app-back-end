@@ -7,4 +7,10 @@ Rails.application.routes.draw do
   resources :movies
   post "/login", to:"users#login"
   get '/latest_movies', to: 'movies#latest_movie', as: 'latest_movie'
+
+  namespace :api do
+    namespace :v1 do
+      resources :bookings, only: [:index]
+    end
+  end
 end
