@@ -1,4 +1,6 @@
 class Api::V1::BookingsController < ApplicationController   
+  before_action :set_booking_params, only: %i[show update destroy]
+
   def index
     @bookings = Booking.all.order(created_at: :desc)
     render json: @bookings, status: :ok
@@ -38,6 +40,12 @@ class Api::V1::BookingsController < ApplicationController
   end
 
   private
+
+  def set_booking_params
+    @booking = Booking.includes(:movie).find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render json: { errors: 'booking not found' }, status: :not_found
+  end
 
   def booking_params
     params.require(:booki).permit(:city, :date, :movie_id, :user_id)
