@@ -8,4 +8,10 @@ Rails.application.routes.draw do
   post "/login", to:"users#login"
   delete "/logout", to: "users#destroy"
   get '/latest_movies', to: 'movies#latest_movie', as: 'latest_movie'
+
+  namespace :api do
+    namespace :v1 do
+      resources :bookings, only: [:index]
+    end
+  end
 end
