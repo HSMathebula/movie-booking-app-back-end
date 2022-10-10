@@ -21,6 +21,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find_by(params[:id])
+    if @user.destroy
+      render json: { message: ' You logout successfully!' }, status: 200
+    else
+      render json: { error: 'Error logout' }
+    end
+  end
+
   private
 
   def user_params
