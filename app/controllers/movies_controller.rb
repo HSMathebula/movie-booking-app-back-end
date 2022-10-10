@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  before_action :authorize
   def index
     movies = Movie.joins(:user, :genre, :category).select('movies.*, user, genres as genre')
     render json: movies.to_json
