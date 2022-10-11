@@ -1,5 +1,4 @@
-class MoviesController < ApplicationController
-  before_action :authorize
+class Api::V1::MoviesController < ApplicationController
   def index
     movies = Movie.joins(:user, :genre, :category).select('movies.*, user, genres as genre')
     render json: movies.to_json
@@ -35,6 +34,8 @@ class MoviesController < ApplicationController
                          :category).select('movies.*, user, genres as genre').order('movies.created_at desc').limit(3)
     render json: movies.to_json
   end
+
+  private
 
   def movie_params
     params.require(:movie).permit(:title, :picture, :category_id, :genre_id)
