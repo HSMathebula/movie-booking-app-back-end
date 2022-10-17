@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :bookings, only: [:index]
-      resource :users, only: [:create]
+      resources :users, only: [:create]
       resources :movies
       post "/login", to:"users#login"
       delete "/logout", to: "users#destroy"
