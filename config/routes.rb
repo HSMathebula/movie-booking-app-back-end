@@ -9,7 +9,6 @@ Rails.application.routes.draw do
       resources :bookings, only: [:index]
       resources :users, only: [:create]
       resources :movies
-      post '/create', to: 'users#create'
       post "/login", to:"users#login"
       delete "/logout", to: "users#destroy"
       get '/latest_movies', to: 'movies#latest_movie', as: 'latest_movie'
