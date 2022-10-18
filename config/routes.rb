@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :bookings, only: [:index]
       resources :users, only: [:create]
+      resources :categories, only: [:index]
+      resources :genres, only: [:index]
       resources :movies do
         get '/latest_movies/page/:page', action: :latest_movie ,on: :collection, as: 'latest_movie'
       end
