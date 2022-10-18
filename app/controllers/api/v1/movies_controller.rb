@@ -14,7 +14,7 @@ class Api::V1::MoviesController < ApplicationController
   def create
     movie = Movie.new(movie_params)
     if movie.save
-      render json: movie, status: 200
+      render json: movie, status: :ok
     else
       render json: { error: 'Error creating a movie' }
     end
