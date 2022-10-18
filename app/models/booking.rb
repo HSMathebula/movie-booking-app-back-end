@@ -5,4 +5,15 @@ class Booking < ApplicationRecord
   validates :city, presence: true, length: { maximum: 250 }
   validates :user_id, :movie_id, presence: true
   validates :date, presence: true
+
+  after_save :update_booked
+  after_destroy :update_booked
+
+  def update_booked
+    if movie.bookings.empty?
+      movie.update(booked: false) if movie.booked
+    else
+      movie.update(booked: true) unless movie.booked
+    end
+  end
 end
