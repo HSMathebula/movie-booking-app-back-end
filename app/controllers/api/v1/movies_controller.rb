@@ -38,7 +38,7 @@ class Api::V1::MoviesController < ApplicationController
       data: movies,
       page: params[:page],
       next_page: movies.next_page,
-      prev_page: movies.prev_page,
+      prev_page: movies.prev_page
     }
   end
 
