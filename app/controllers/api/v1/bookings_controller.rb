@@ -2,7 +2,7 @@ class Api::V1::BookingsController < ApplicationController
   before_action :set_booking_params, only: %i[show update destroy]
 
   def index
-    @bookings = Booking.all.order(created_at: :desc)
+    @bookings = Booking.joins(:movie).select('bookings.*, movies.*').order('bookings.created_at desc')
     render json: @bookings, status: :ok
   end
 
@@ -11,10 +11,7 @@ class Api::V1::BookingsController < ApplicationController
   end
 
   def create
-    @movie = Movies.find(params[:movie_id])
-
     @created_booking = Booking.new(booking_params)
-    @created_booking.movie_id = @movie.id
 
     if @created_booking.save
       render json: @created_booking, status: :created
