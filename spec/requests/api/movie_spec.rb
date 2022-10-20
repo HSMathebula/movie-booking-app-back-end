@@ -48,6 +48,9 @@ describe 'Movies API' do
                  picture: { type: :string },
                  user_id: { type: :bigint },
                  category_id: { type: :bigint },
+                 genre_id: { type: :bigint },
+               },
+               required: ['title', 'user_id', 'category_id', 'genre_id']
                  genre_id: { type: :bigint }
                },
                required: %w[title user_id category_id genre_id]

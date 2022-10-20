@@ -4,17 +4,6 @@ info:
   title: API V1
   version: v1
 paths:
-<<<<<<< HEAD
-  "/categories":
-    get:
-      summary: index
-      tags:
-      - Categories
-      parameters: []
-      responses:
-        '200':
-          description: category created
-=======
   "/users/{user_id}/bookings":
     post:
       summary: Creates a booking
@@ -24,7 +13,6 @@ paths:
       responses:
         '200':
           description: booking created
->>>>>>> 6419556fbd4931c0642b4ce73eff536b35216040
         '422':
           description: invalid request
       requestBody:
@@ -33,33 +21,6 @@ paths:
             schema:
               type: object
               properties:
-<<<<<<< HEAD
-                name:
-                  type: string
-              required:
-              - name
-  "/genres":
-    get:
-      summary: index
-      tags:
-      - Genres
-      parameters: []
-      responses:
-        '200':
-          description: genre created
-        '422':
-          description: invalid request
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-              required:
-              - name
-=======
                 title:
                   type: string
                 city:
@@ -153,7 +114,48 @@ paths:
           description: booking deleted
         '422':
           description: invalid request
->>>>>>> 6419556fbd4931c0642b4ce73eff536b35216040
+  "/categories":
+    get:
+      summary: index
+      tags:
+      - Categories
+      parameters: []
+      responses:
+        '200':
+          description: category created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+  "/genres":
+    get:
+      summary: index
+      tags:
+      - Genres
+      parameters: []
+      responses:
+        '200':
+          description: genre created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
   "/movies":
     post:
       summary: Creates a movie
@@ -261,7 +263,84 @@ paths:
           description: movie not found
         '406':
           description: unsupported accept header
-<<<<<<< HEAD
+    delete:
+      summary: Delete a movie
+      tags:
+      - Movies
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: movie deleted
+        '422':
+          description: invalid request
+  "/movies/latest_movies/page/{page}":
+    get:
+      summary: Retrieves latest movies
+      tags:
+      - Movies
+      parameters:
+      - name: page
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: movie found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  duration:
+                    type: float
+                  time:
+                    type: datetime
+                  picture:
+                    type: string
+                  user_id:
+                    type: bigint
+                  category_id:
+                    type: bigint
+                  genre_id:
+                    type: bigint
+                required:
+                - page
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  duration:
+                    type: float
+                  time:
+                    type: datetime
+                  picture:
+                    type: string
+                  user_id:
+                    type: bigint
+                  category_id:
+                    type: bigint
+                  genre_id:
+                    type: bigint
+                required:
+                - page
+        '404':
+          description: movie not found
+        '406':
+          description: unsupported accept header
   "/users":
     post:
       summary: create a user
@@ -293,30 +372,6 @@ paths:
       - Users
       parameters:
       - name: id
-=======
-    delete:
-      summary: Delete a movie
-      tags:
-      - Movies
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: movie deleted
-        '422':
-          description: invalid request
-  "/movies/latest_movies/page/{page}":
-    get:
-      summary: Retrieves latest movies
-      tags:
-      - Movies
-      parameters:
-      - name: page
->>>>>>> 6419556fbd4931c0642b4ce73eff536b35216040
         in: path
         required: true
         schema:
@@ -329,7 +384,6 @@ paths:
               schema:
                 type: object
                 properties:
-<<<<<<< HEAD
                   name:
                     type: string
                   password:
@@ -337,31 +391,10 @@ paths:
                 required:
                 - name
                 - password
-=======
-                  title:
-                    type: string
-                  description:
-                    type: string
-                  duration:
-                    type: float
-                  time:
-                    type: datetime
-                  picture:
-                    type: string
-                  user_id:
-                    type: bigint
-                  category_id:
-                    type: bigint
-                  genre_id:
-                    type: bigint
-                required:
-                - page
->>>>>>> 6419556fbd4931c0642b4ce73eff536b35216040
             application/xml:
               schema:
                 type: object
                 properties:
-<<<<<<< HEAD
                   name:
                     type: string
                   password:
@@ -369,26 +402,6 @@ paths:
                 required:
                 - name
                 - password
-=======
-                  title:
-                    type: string
-                  description:
-                    type: string
-                  duration:
-                    type: float
-                  time:
-                    type: datetime
-                  picture:
-                    type: string
-                  user_id:
-                    type: bigint
-                  category_id:
-                    type: bigint
-                  genre_id:
-                    type: bigint
-                required:
-                - page
->>>>>>> 6419556fbd4931c0642b4ce73eff536b35216040
         '404':
           description: movie not found
         '406':

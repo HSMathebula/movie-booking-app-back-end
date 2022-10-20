@@ -44,9 +44,9 @@ describe 'Bookings API' do
                  date: { type: :date },
                  picture: { type: :string },
                  user_id: { type: :bigint },
-                 movie_id: { type: :bigint }
+                 movie_id: { type: :bigint },
                },
-               required: %w[city date user_id movie_id]
+               required: ['city', 'date', 'user_id', 'movie_id']
 
         let(:id) { Blog.create(city: 'Jozi', date: '2022-02-02').id }
         run_test!
