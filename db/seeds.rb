@@ -5,9 +5,3 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-
-@user = User.create(name: 'test2', password: 'test')
-@category = Category.create(name: 'Horror')
-@genre = Genre.create(name: 'action')
-@movie = Movie.create(title: 'Thour love and T', user_id: @user.id, category_id: @category.id, genre_id: @genre.id, picture: 'https://image.shutterstock.com/image-vector/hawaii-beach-bar-retro-sign-600w-2156338567.jpg')
-@booking = Booking.create(city: 'Pretoria', date: '2022-10-02', user_id: @user.id, movie_id: @movie.id)
