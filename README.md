@@ -8,7 +8,7 @@ The project is based on an app to book a Movie . You can add and delet and see d
 
 ## Project Documentation 📄
 
-- Live demo [link]()👈
+- Live demo [link](https://exquisite-marigold-3a82c1.netlify.app/)👈
 - API deployment [link](https://moviebiskop.herokuapp.com/api/v1/movies)👈
 - Front-end GitHub repository [link](https://github.com/bamsi/movie-booking-app-frontend)👈
 
