@@ -153,6 +153,71 @@ paths:
           description: movie not found
         '406':
           description: unsupported accept header
+  "/users":
+    post:
+      summary: create a user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: user created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                password:
+                  type: string
+              required:
+              - name
+              - password
+  "/users/{id}":
+    get:
+      summary: Retrieves a user
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: movie found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  password:
+                    type: string
+                required:
+                - name
+                - password
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  password:
+                    type: string
+                required:
+                - name
+                - password
+        '404':
+          description: movie not found
+        '406':
+          description: unsupported accept header
 servers:
 - url: https://{defaultHost}
   variables:
