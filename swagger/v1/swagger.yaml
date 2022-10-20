@@ -4,6 +4,48 @@ info:
   title: API V1
   version: v1
 paths:
+  "/categories":
+    get:
+      summary: index
+      tags:
+      - Categories
+      parameters: []
+      responses:
+        '200':
+          description: category created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+  "/genres":
+    get:
+      summary: index
+      tags:
+      - Genres
+      parameters: []
+      responses:
+        '200':
+          description: genre created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
   "/movies":
     post:
       summary: Creates a movie
