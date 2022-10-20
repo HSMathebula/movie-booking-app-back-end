@@ -8,7 +8,7 @@ RSpec.describe 'api/genre', type: :request do
       parameter name: :genre, in: :body, schema: {
         type: :object,
         properties: {
-          name: { type: :string },
+          name: { type: :string }
         },
         required: ['name']
       }

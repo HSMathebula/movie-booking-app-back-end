@@ -15,9 +15,13 @@ describe 'Movies API' do
           picture: { type: :string },
           user_id: { type: :bigint },
           category_id: { type: :bigint },
-          genre_id: { type: :bigint },
+          genre_id: { type: :bigint }
         },
+<<<<<<< HEAD
         required: ['title', 'user_id', 'category_id', 'genre_id']
+=======
+        required: %w[title user_id category_id genre_id]
+>>>>>>> 2606bf386f0aeebf546e723fa3210af31d9a0b3b
       }
 
       response '200', 'movie created' do
@@ -48,9 +52,15 @@ describe 'Movies API' do
                  picture: { type: :string },
                  user_id: { type: :bigint },
                  category_id: { type: :bigint },
+<<<<<<< HEAD
                  genre_id: { type: :bigint },
                },
                required: ['title', 'user_id', 'category_id', 'genre_id']
+=======
+                 genre_id: { type: :bigint }
+               },
+               required: %w[title user_id category_id genre_id]
+>>>>>>> 2606bf386f0aeebf546e723fa3210af31d9a0b3b
 
         let(:id) { Blog.create(title: 'the lie', description: 'sample description').id }
         run_test!
@@ -62,7 +72,7 @@ describe 'Movies API' do
       end
 
       response '406', 'unsupported accept header' do
-        let(:'Accept') { 'application/movie' }
+        let(:Accept) { 'application/movie' }
         run_test!
       end
     end
@@ -84,7 +94,11 @@ describe 'Movies API' do
                  picture: { type: :string },
                  user_id: { type: :bigint },
                  category_id: { type: :bigint },
+<<<<<<< HEAD
                  genre_id: { type: :bigint },
+=======
+                 genre_id: { type: :bigint }
+>>>>>>> 2606bf386f0aeebf546e723fa3210af31d9a0b3b
                },
                required: ['page']
 
@@ -98,7 +112,7 @@ describe 'Movies API' do
       end
 
       response '406', 'unsupported accept header' do
-        let(:'Accept') { 'application/movie' }
+        let(:Accept) { 'application/movie' }
         run_test!
       end
     end

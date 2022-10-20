@@ -13,9 +13,13 @@ describe 'Bookings API' do
           date: { type: :date },
           picture: { type: :string },
           user_id: { type: :bigint },
-          movie_id: { type: :bigint },
+          movie_id: { type: :bigint }
         },
+<<<<<<< HEAD
         required: ['city', 'date', 'user_id', 'movie_id']
+=======
+        required: %w[city date user_id movie_id]
+>>>>>>> 2606bf386f0aeebf546e723fa3210af31d9a0b3b
       }
 
       response '200', 'booking created' do
@@ -44,9 +48,15 @@ describe 'Bookings API' do
                  date: { type: :date },
                  picture: { type: :string },
                  user_id: { type: :bigint },
+<<<<<<< HEAD
                  movie_id: { type: :bigint },
                },
                required: ['city', 'date', 'user_id', 'movie_id']
+=======
+                 movie_id: { type: :bigint }
+               },
+               required: %w[city date user_id movie_id]
+>>>>>>> 2606bf386f0aeebf546e723fa3210af31d9a0b3b
 
         let(:id) { Blog.create(city: 'Jozi', date: '2022-02-02').id }
         run_test!
@@ -58,7 +68,7 @@ describe 'Bookings API' do
       end
 
       response '406', 'unsupported accept header' do
-        let(:'Accept') { 'application/booking' }
+        let(:Accept) { 'application/booking' }
         run_test!
       end
     end

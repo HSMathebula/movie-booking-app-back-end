@@ -9,9 +9,9 @@ RSpec.describe 'api/user', type: :request do
         type: :object,
         properties: {
           name: { type: :string },
-          password: { type: :string },
+          password: { type: :string }
         },
-        required: ['name', 'password']
+        required: %w[name password]
       }
 
       response '200', 'user created' do
@@ -35,9 +35,9 @@ RSpec.describe 'api/user', type: :request do
         schema type: :object,
                properties: {
                  name: { type: :string },
-                 password: { type: :string },
+                 password: { type: :string }
                },
-               required: ['name', 'password']
+               required: %w[name password]
 
         let(:id) { User.create(name: 'ilham', password: 'ilham123').id }
         run_test!
@@ -49,7 +49,7 @@ RSpec.describe 'api/user', type: :request do
       end
 
       response '406', 'unsupported accept header' do
-        let(:'Accept') { 'application/movie' }
+        let(:Accept) { 'application/movie' }
         run_test!
       end
     end
