@@ -111,6 +111,84 @@ paths:
           description: movie not found
         '406':
           description: unsupported accept header
+    delete:
+      summary: Delete a movie
+      tags:
+      - Movies
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: movie deleted
+        '422':
+          description: invalid request
+  "/movies/latest_movies/page/{page}":
+    get:
+      summary: Retrieves latest movies
+      tags:
+      - Movies
+      parameters:
+      - name: page
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: movie found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  duration:
+                    type: float
+                  time:
+                    type: datetime
+                  picture:
+                    type: string
+                  user_id:
+                    type: bigint
+                  category_id:
+                    type: bigint
+                  genre_id:
+                    type: bigint
+                required:
+                - page
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  duration:
+                    type: float
+                  time:
+                    type: datetime
+                  picture:
+                    type: string
+                  user_id:
+                    type: bigint
+                  category_id:
+                    type: bigint
+                  genre_id:
+                    type: bigint
+                required:
+                - page
+        '404':
+          description: movie not found
+        '406':
+          description: unsupported accept header
 servers:
 - url: https://{defaultHost}
   variables:
