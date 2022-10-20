@@ -1,0 +1,400 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+<<<<<<< HEAD
+  "/categories":
+    get:
+      summary: index
+      tags:
+      - Categories
+      parameters: []
+      responses:
+        '200':
+          description: category created
+=======
+  "/users/{user_id}/bookings":
+    post:
+      summary: Creates a booking
+      tags:
+      - Bookings
+      parameters: []
+      responses:
+        '200':
+          description: booking created
+>>>>>>> 6419556fbd4931c0642b4ce73eff536b35216040
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+<<<<<<< HEAD
+                name:
+                  type: string
+              required:
+              - name
+  "/genres":
+    get:
+      summary: index
+      tags:
+      - Genres
+      parameters: []
+      responses:
+        '200':
+          description: genre created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+=======
+                title:
+                  type: string
+                city:
+                  type: string
+                date:
+                  type: date
+                picture:
+                  type: string
+                user_id:
+                  type: bigint
+                movie_id:
+                  type: bigint
+              required:
+              - city
+              - date
+              - user_id
+              - movie_id
+  "/users/{user_id}/bookings/{id}":
+    get:
+      summary: Retrieves a bookings
+      tags:
+      - Bookings
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: booking found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  city:
+                    type: string
+                  date:
+                    type: date
+                  picture:
+                    type: string
+                  user_id:
+                    type: bigint
+                  movie_id:
+                    type: bigint
+                required:
+                - city
+                - date
+                - user_id
+                - movie_id
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  city:
+                    type: string
+                  date:
+                    type: date
+                  picture:
+                    type: string
+                  user_id:
+                    type: bigint
+                  movie_id:
+                    type: bigint
+                required:
+                - city
+                - date
+                - user_id
+                - movie_id
+        '404':
+          description: booking not found
+        '406':
+          description: unsupported accept header
+    delete:
+      summary: Delete a booking
+      tags:
+      - Bookings
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: booking deleted
+        '422':
+          description: invalid request
+>>>>>>> 6419556fbd4931c0642b4ce73eff536b35216040
+  "/movies":
+    post:
+      summary: Creates a movie
+      tags:
+      - Movies
+      parameters: []
+      responses:
+        '200':
+          description: movie created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                duration:
+                  type: float
+                time:
+                  type: datetime
+                picture:
+                  type: string
+                user_id:
+                  type: bigint
+                category_id:
+                  type: bigint
+                genre_id:
+                  type: bigint
+              required:
+              - title
+              - user_id
+              - category_id
+              - genre_id
+  "/movies/{id}":
+    get:
+      summary: Retrieves a movie
+      tags:
+      - Movies
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: movie found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  duration:
+                    type: float
+                  time:
+                    type: datetime
+                  picture:
+                    type: string
+                  user_id:
+                    type: bigint
+                  category_id:
+                    type: bigint
+                  genre_id:
+                    type: bigint
+                required:
+                - title
+                - user_id
+                - category_id
+                - genre_id
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  duration:
+                    type: float
+                  time:
+                    type: datetime
+                  picture:
+                    type: string
+                  user_id:
+                    type: bigint
+                  category_id:
+                    type: bigint
+                  genre_id:
+                    type: bigint
+                required:
+                - title
+                - user_id
+                - category_id
+                - genre_id
+        '404':
+          description: movie not found
+        '406':
+          description: unsupported accept header
+<<<<<<< HEAD
+  "/users":
+    post:
+      summary: create a user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: user created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                password:
+                  type: string
+              required:
+              - name
+              - password
+  "/users/{id}":
+    get:
+      summary: Retrieves a user
+      tags:
+      - Users
+      parameters:
+      - name: id
+=======
+    delete:
+      summary: Delete a movie
+      tags:
+      - Movies
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: movie deleted
+        '422':
+          description: invalid request
+  "/movies/latest_movies/page/{page}":
+    get:
+      summary: Retrieves latest movies
+      tags:
+      - Movies
+      parameters:
+      - name: page
+>>>>>>> 6419556fbd4931c0642b4ce73eff536b35216040
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: movie found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+<<<<<<< HEAD
+                  name:
+                    type: string
+                  password:
+                    type: string
+                required:
+                - name
+                - password
+=======
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  duration:
+                    type: float
+                  time:
+                    type: datetime
+                  picture:
+                    type: string
+                  user_id:
+                    type: bigint
+                  category_id:
+                    type: bigint
+                  genre_id:
+                    type: bigint
+                required:
+                - page
+>>>>>>> 6419556fbd4931c0642b4ce73eff536b35216040
+            application/xml:
+              schema:
+                type: object
+                properties:
+<<<<<<< HEAD
+                  name:
+                    type: string
+                  password:
+                    type: string
+                required:
+                - name
+                - password
+=======
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  duration:
+                    type: float
+                  time:
+                    type: datetime
+                  picture:
+                    type: string
+                  user_id:
+                    type: bigint
+                  category_id:
+                    type: bigint
+                  genre_id:
+                    type: bigint
+                required:
+                - page
+>>>>>>> 6419556fbd4931c0642b4ce73eff536b35216040
+        '404':
+          description: movie not found
+        '406':
+          description: unsupported accept header
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
