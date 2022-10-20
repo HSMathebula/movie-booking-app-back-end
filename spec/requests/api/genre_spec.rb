@@ -1,21 +1,20 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/genre', type: :request do
-    path '/genres' do
-
+  path '/genres' do
     get 'index' do
       tags 'Genres'
       consumes 'application/json'
       parameter name: :genre, in: :body, schema: {
         type: :object,
         properties: {
-          name: { type: :string },
+          name: { type: :string }
         },
-        required: [ 'name' ]
+        required: ['name']
       }
 
       response '200', 'genre created' do
-        let(:genre) { { title: 'Romantic'} }
+        let(:genre) { { title: 'Romantic' } }
         run_test!
       end
 
