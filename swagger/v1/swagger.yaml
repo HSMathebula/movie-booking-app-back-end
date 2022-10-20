@@ -4,6 +4,116 @@ info:
   title: API V1
   version: v1
 paths:
+  "/users/{user_id}/bookings":
+    post:
+      summary: Creates a booking
+      tags:
+      - Bookings
+      parameters: []
+      responses:
+        '200':
+          description: booking created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                city:
+                  type: string
+                date:
+                  type: date
+                picture:
+                  type: string
+                user_id:
+                  type: bigint
+                movie_id:
+                  type: bigint
+              required:
+              - city
+              - date
+              - user_id
+              - movie_id
+  "/users/{user_id}/bookings/{id}":
+    get:
+      summary: Retrieves a bookings
+      tags:
+      - Bookings
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: booking found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  city:
+                    type: string
+                  date:
+                    type: date
+                  picture:
+                    type: string
+                  user_id:
+                    type: bigint
+                  movie_id:
+                    type: bigint
+                required:
+                - city
+                - date
+                - user_id
+                - movie_id
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  city:
+                    type: string
+                  date:
+                    type: date
+                  picture:
+                    type: string
+                  user_id:
+                    type: bigint
+                  movie_id:
+                    type: bigint
+                required:
+                - city
+                - date
+                - user_id
+                - movie_id
+        '404':
+          description: booking not found
+        '406':
+          description: unsupported accept header
+    delete:
+      summary: Delete a booking
+      tags:
+      - Bookings
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: booking deleted
+        '422':
+          description: invalid request
   "/movies":
     post:
       summary: Creates a movie
