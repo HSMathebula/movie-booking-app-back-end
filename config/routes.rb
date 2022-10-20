@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   
   namespace :api do
     namespace :v1 do
-      resources :bookings, only: [:index]
-      resources :users, only: [:create]
+      resources :users, only: [:create] do 
+        resources :bookings
+      end
       resources :categories, only: [:index]
       resources :genres, only: [:index]
       resources :movies do
