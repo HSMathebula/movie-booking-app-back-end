@@ -3,7 +3,114 @@ openapi: 3.0.1
 info:
   title: API V1
   version: v1
-paths: {}
+paths:
+  "/movies":
+    post:
+      summary: Creates a movie
+      tags:
+      - Movies
+      parameters: []
+      responses:
+        '200':
+          description: movie created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                duration:
+                  type: float
+                time:
+                  type: datetime
+                picture:
+                  type: string
+                user_id:
+                  type: bigint
+                category_id:
+                  type: bigint
+                genre_id:
+                  type: bigint
+              required:
+              - title
+              - user_id
+              - category_id
+              - genre_id
+  "/movies/{id}":
+    get:
+      summary: Retrieves a movie
+      tags:
+      - Movies
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: movie found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  duration:
+                    type: float
+                  time:
+                    type: datetime
+                  picture:
+                    type: string
+                  user_id:
+                    type: bigint
+                  category_id:
+                    type: bigint
+                  genre_id:
+                    type: bigint
+                required:
+                - title
+                - user_id
+                - category_id
+                - genre_id
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  duration:
+                    type: float
+                  time:
+                    type: datetime
+                  picture:
+                    type: string
+                  user_id:
+                    type: bigint
+                  category_id:
+                    type: bigint
+                  genre_id:
+                    type: bigint
+                required:
+                - title
+                - user_id
+                - category_id
+                - genre_id
+        '404':
+          description: movie not found
+        '406':
+          description: unsupported accept header
 servers:
 - url: https://{defaultHost}
   variables:
