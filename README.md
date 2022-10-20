@@ -1,6 +1,6 @@
-# Movie booking app Back-end
+# Movie Biskop
 
-The project is based on an app to book a Movie . You can add and delet and see detail of each movie.
+The project is based on an app  to book a Movie . You can add and delet and see detail of each movie.
 
 ## Database Structure:
 
@@ -16,7 +16,7 @@ The project is based on an app to book a Movie . You can add and delet and see d
 
 ### Kanban Board [link](https://github.com/HSMathebula/movie-booking-app-back-end/projects/1)
 
-### Team members: 3 (Ilham Boauik, Haji Bamsi, Happen Mathebula )
+### Team members: 3 (Ilham Bouaik, Haji Bamsi, Happen Mathebula )
 
 ## Built With 🛠️
 
