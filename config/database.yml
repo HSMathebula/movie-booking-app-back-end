@@ -59,7 +59,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: budget_db
+  database: movie_booking_app_backend_test
   username: postgres
   password: bamsi
 

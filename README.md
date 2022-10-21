@@ -1,6 +1,6 @@
 # Movie Biskop
 
-The project is based on an app  to book a Movie . You can add and delet and see detail of each movie.
+The project is based on an app to book a Movie . You can add and delet and see detail of each movie.
 
 ## Database Structure:
 
@@ -139,6 +139,6 @@ Give a ⭐️ if you like this project!
 
 - [Microverse](https://www.microverse.org/)
 
-## 📝 License
+## 📝 [License](./MIT.md)
 
 This project is MIT licensed.
