@@ -15,6 +15,7 @@ The project is based on an app  to book a Movie . You can add and delet and see 
 ## Kanban Board
 
 ### Kanban Board [link](https://github.com/HSMathebula/movie-booking-app-back-end/projects/1)
+![Screenshot from 2022-10-05 15-19-19](https://user-images.githubusercontent.com/89751188/194084054-975c76ca-2e83-4f6a-8881-06e3ebbd83f2.png)
 
 ### Team members: 3 (Ilham Bouaik, Haji Bamsi, Happen Mathebula )
 
