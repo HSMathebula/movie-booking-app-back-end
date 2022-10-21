@@ -1,7 +1,6 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/movies', type: :request do
-
   before(:each) do
     @user = User.create(name: 'test', password: 'test')
     @category = Category.create(name: 'Horror')
@@ -30,10 +29,9 @@ RSpec.describe 'api/movies', type: :request do
         }
 
         response '200', 'movie created successfully' do
-          let(:movie) {{ title: 'test', user_id: @user.id, category_id: @category.id, genre_id: @genre.id  }}
+          let(:movie) { { title: 'test', user_id: @user.id, category_id: @category.id, genre_id: @genre.id } }
           run_test!
         end
-
       end
     end
 
@@ -45,24 +43,23 @@ RSpec.describe 'api/movies', type: :request do
 
         response '200', 'movie found' do
           schema type: :object,
-                properties: {
-                  title: { type: :string },
-                  description: { type: :string },
-                  duration: { type: :float },
-                  time: { type: :datetime },
-                  picture: { type: :string },
-                  user_id: { type: :bigint },
-                  category_id: { type: :bigint },
-                  genre_id: { type: :bigint }
-                },
-                required: %w[title user_id category_id genre_id]
+                 properties: {
+                   title: { type: :string },
+                   description: { type: :string },
+                   duration: { type: :float },
+                   time: { type: :datetime },
+                   picture: { type: :string },
+                   user_id: { type: :bigint },
+                   category_id: { type: :bigint },
+                   genre_id: { type: :bigint }
+                 },
+                 required: %w[title user_id category_id genre_id]
         end
 
         response '200', 'movie found ' do
           let(:id) { @user.id }
           run_test!
         end
- 
       end
     end
 
@@ -74,17 +71,17 @@ RSpec.describe 'api/movies', type: :request do
 
         response '200', 'movie found' do
           schema type: :object,
-                properties: {
-                  title: { type: :string },
-                  description: { type: :string },
-                  duration: { type: :float },
-                  time: { type: :datetime },
-                  picture: { type: :string },
-                  user_id: { type: :bigint },
-                  category_id: { type: :bigint },
-                  genre_id: { type: :bigint }
-                },
-                required: ['page']
+                 properties: {
+                   title: { type: :string },
+                   description: { type: :string },
+                   duration: { type: :float },
+                   time: { type: :datetime },
+                   picture: { type: :string },
+                   user_id: { type: :bigint },
+                   category_id: { type: :bigint },
+                   genre_id: { type: :bigint }
+                 },
+                 required: ['page']
         end
 
         response '200', 'Latest movies retrieved ' do

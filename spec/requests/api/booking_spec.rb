@@ -1,7 +1,6 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/bookings', type: :request do
-
   before(:each) do
     @user = User.create(name: 'test', password: 'test')
     @category = Category.create(name: 'Horror')
@@ -9,7 +8,7 @@ RSpec.describe 'api/bookings', type: :request do
     @movie = Movie.create(title: 'War bus', user_id: @user.id, category_id: @category.id, genre_id: @genre.id)
     @booking = Booking.create(city: 'test', user_id: @user.id, date: '2022-02-2', movie_id: @movie.id)
   end
-  
+
   describe 'Bookings API' do
     path '/api/v1/users/:user_id/bookings' do
       get 'Retrieve bookings' do
@@ -53,7 +52,9 @@ RSpec.describe 'api/bookings', type: :request do
         }
 
         response '201', 'booking created' do
-          let(:user_id) { {user_id: @user.id, booking: {city: 'test', user_id: @user.id, date: '2022-02-2', movie_id: @movie.id} } }
+          let(:user_id) do
+            { user_id: @user.id, booking: { city: 'test', user_id: @user.id, date: '2022-02-2', movie_id: @movie.id } }
+          end
           run_test!
         end
       end

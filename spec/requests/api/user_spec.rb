@@ -19,7 +19,7 @@ RSpec.describe 'api/users', type: :request do
         }
 
         response '200', 'user created' do
-          let(:user) { {user: { name: 'test', password: 'test' }} }
+          let(:user) { { user: { name: 'test', password: 'test' } } }
           run_test!
         end
 
@@ -44,16 +44,15 @@ RSpec.describe 'api/users', type: :request do
         }
 
         response '200', 'user logged in' do
-          let(:user) { {user: { name: 'test', password: 'test' }} }
+          let(:user) { { user: { name: 'test', password: 'test' } } }
           run_test!
         end
 
         response '422', 'user not found' do
-          let(:user) { {user: { name: 'test', password: 'haji' }}}
+          let(:user) { { user: { name: 'test', password: 'haji' } } }
           run_test!
         end
       end
     end
   end
-
 end

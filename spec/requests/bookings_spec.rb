@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Bookings', type: :request do
-
   before(:each) do
     @user = User.create(name: 'test', password: 'test')
   end

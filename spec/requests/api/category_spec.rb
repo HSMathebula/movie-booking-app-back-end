@@ -1,7 +1,6 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/category', type: :request do
-
   before(:each) do
     @category = Category.create(name: 'test')
   end
@@ -14,19 +13,17 @@ RSpec.describe 'api/category', type: :request do
         parameter schema: {
           type: :object,
           properties: {
-            id: {type: :bigint},
+            id: { type: :bigint },
             name: { type: :string },
-            created_at: {type: :date},
-            updated_at: {type: :date},
-          },
+            created_at: { type: :date },
+            updated_at: { type: :date }
+          }
         }
-  
+
         response '200', 'categories retrieved' do
           run_test!
-        end 
-
+        end
       end
     end
   end
-  
 end
