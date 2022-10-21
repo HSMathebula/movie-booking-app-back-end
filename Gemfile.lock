@@ -249,6 +249,7 @@ DEPENDENCIES
   rails-controller-testing
   rspec-rails
   rswag
+  rswag-specs
   rubocop (>= 1.0, < 2.0)
   tzinfo-data
 

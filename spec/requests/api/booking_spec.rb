@@ -1,83 +1,61 @@
 require 'swagger_helper'
 
-describe 'Bookings API' do
-  path '/users/{user_id}/bookings' do
-    post 'Creates a booking' do
-      tags 'Bookings'
-      consumes 'application/json'
-      parameter name: :booking, in: :body, schema: {
-        type: :object,
-        properties: {
-          title: { type: :string },
-          city: { type: :string },
-          date: { type: :date },
-          picture: { type: :string },
-          user_id: { type: :bigint },
-          movie_id: { type: :bigint }
-        },
-        required: %w[city date user_id movie_id]
-      }
+RSpec.describe 'api/bookings', type: :request do
 
-      response '200', 'booking created' do
-        let(:booking) { { city: 'Jozi', user_id: 1, movie_id: 1 } }
-        run_test!
-      end
+  before(:each) do
+    @user = User.create(name: 'test', password: 'test')
+    @category = Category.create(name: 'Horror')
+    @genre = Genre.create(name: 'Romantic')
+    @movie = Movie.create(title: 'War bus', user_id: @user.id, category_id: @category.id, genre_id: @genre.id)
+    @booking = Booking.create(city: 'test', user_id: @user.id, date: '2022-02-2', movie_id: @movie.id)
+  end
+  
+  describe 'Bookings API' do
+    path '/api/v1/users/:user_id/bookings' do
+      get 'Retrieve bookings' do
+        tags 'Bookings'
+        consumes 'application/json'
+        parameter name: :user_id, in: :body, schema: {
+          type: :object,
+          properties: {
+            title: { type: :string },
+            city: { type: :string },
+            date: { type: :date },
+            picture: { type: :string },
+            user_id: { type: :bigint },
+            movie_id: { type: :bigint }
+          },
+          required: %w[city date user_id movie_id]
+        }
 
-      response '422', 'invalid request' do
-        let(:booking) { { city: 'Jozi' } }
-        run_test!
+        response '200', 'bookings retrieved' do
+          let(:user_id) { @user.id }
+          run_test!
+        end
       end
     end
-  end
 
-  path '/users/{user_id}/bookings/{id}' do
-    get 'Retrieves a bookings' do
-      tags 'Bookings'
-      produces 'application/json', 'application/xml'
-      parameter name: :id, in: :path, type: :string
+    path '/api/v1/users/:user_id/bookings' do
+      post 'Create booking' do
+        tags 'Bookings'
+        consumes 'application/json'
+        parameter name: :user_id, in: :body, schema: {
+          type: :object,
+          properties: {
+            title: { type: :string },
+            city: { type: :string },
+            date: { type: :date },
+            picture: { type: :string },
+            user_id: { type: :bigint },
+            movie_id: { type: :bigint }
+          },
+          required: %w[city date user_id movie_id]
+        }
 
-      response '200', 'booking found' do
-        schema type: :object,
-               properties: {
-                 title: { type: :string },
-                 city: { type: :string },
-                 date: { type: :date },
-                 picture: { type: :string },
-                 user_id: { type: :bigint },
-                 movie_id: { type: :bigint }
-               },
-               required: %w[city date user_id movie_id]
-
-        let(:id) { Blog.create(city: 'Jozi', date: '2022-02-02').id }
-        run_test!
-      end
-
-      response '404', 'booking not found' do
-        let(:id) { 'invalid' }
-        run_test!
-      end
-
-      response '406', 'unsupported accept header' do
-        let(:Accept) { 'application/booking' }
-        run_test!
-      end
-    end
-  end
-
-  path '/users/{user_id}/bookings/{id}' do
-    delete 'Delete a booking' do
-      tags 'Bookings'
-      consumes 'application/json'
-      parameter name: :id, in: :path, type: :string
-
-      response '200', 'booking deleted' do
-        let(:booking) { { city: 'Jozi', user_id: 1, movie_id: 1 } }
-        run_test!
-      end
-
-      response '422', 'invalid request' do
-        let(:booking) { { city: 'Jozi' } }
-        run_test!
+        response '201', 'booking created' do
+          let(:user_id) { {user_id: @user.id, booking: {city: 'test', user_id: @user.id, date: '2022-02-2', movie_id: @movie.id} } }
+          run_test!
+        end
       end
     end
   end
