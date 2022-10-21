@@ -1,0 +1,239 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/users/:user_id/bookings":
+    get:
+      summary: Retrieve bookings
+      tags:
+      - Bookings
+      parameters: []
+      responses:
+        '200':
+          description: bookings retrieved
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                city:
+                  type: string
+                date:
+                  type: date
+                picture:
+                  type: string
+                user_id:
+                  type: bigint
+                movie_id:
+                  type: bigint
+              required:
+              - city
+              - date
+              - user_id
+              - movie_id
+    post:
+      summary: Create booking
+      tags:
+      - Bookings
+      parameters: []
+      responses:
+        '200':
+          description: booking created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                city:
+                  type: string
+                date:
+                  type: date
+                picture:
+                  type: string
+                user_id:
+                  type: bigint
+                movie_id:
+                  type: bigint
+              required:
+              - city
+              - date
+              - user_id
+              - movie_id
+  "/api/v1/categories":
+    get:
+      summary: index
+      tags:
+      - Categories
+      parameters:
+      - schema:
+          type: object
+          properties:
+            id:
+              type: bigint
+            name:
+              type: string
+            created_at:
+              type: date
+            updated_at:
+              type: date
+      responses:
+        '200':
+          description: categories retrieved
+  "/api/v1/genres":
+    get:
+      summary: index
+      tags:
+      - Genres
+      parameters:
+      - schema:
+          type: object
+          properties:
+            id:
+              type: bigint
+            name:
+              type: string
+            created_at:
+              type: date
+            updated_at:
+              type: date
+      responses:
+        '200':
+          description: genres retrieved
+  "/api/v1/movies":
+    post:
+      summary: Creates a movie
+      tags:
+      - Movies
+      parameters: []
+      responses:
+        '200':
+          description: movie created successfully
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                duration:
+                  type: float
+                time:
+                  type: datetime
+                picture:
+                  type: string
+                user_id:
+                  type: bigint
+                category_id:
+                  type: bigint
+                genre_id:
+                  type: bigint
+              required:
+              - title
+              - user_id
+              - category_id
+              - genre_id
+  "/api/v1/movies/{id}":
+    get:
+      summary: Retrieves a movie
+      tags:
+      - Movies
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'movie found '
+    delete:
+      summary: Delete a movie
+      tags:
+      - Movies
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Movies deleted
+  "/api/v1/movies/latest_movies/page/{page}":
+    get:
+      summary: Retrieves latest movies
+      tags:
+      - Movies
+      parameters:
+      - name: page
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'Latest movies retrieved '
+  "/api/v1/users":
+    post:
+      summary: create a user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: user created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                password:
+                  type: string
+              required:
+              - name
+              - password
+  "/api/v1/login":
+    post:
+      summary: User log in
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: user logged in
+        '422':
+          description: user not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                password:
+                  type: string
+              required:
+              - name
+              - password
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
